@@ -3,12 +3,16 @@
   "version": "0.0.1",
   "description": "Cordova Payment Plugin Powered by Interswitch",
   "cordova": {
-    "id": "cordova-isw-payment-plugin",
+    "id": "com.interswitchng.testpayment",
     "platforms": [
-      "android",
       "ios"
     ]
   },
+  "repository": {
+    "type": "git",
+    "url": "/Users/gabrielizebhigie/Desktop/cordovapaymentpluginswift/cordova-payment-plugin-2/.git/"
+  },
+
   "files": [
     "plugin.xml",
     "src",
