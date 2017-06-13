@@ -2,13 +2,13 @@ var exec = require('cordova/exec');
 
 
 function paymentAction (action) {
-  return function (arg0, success, error) {
-    var argsArray =  (Array.isArray(arg0)) ? arg0 : [arg0];
+  return function (arg, successCallback, failCallback) {
+    var argsArray =  (Array.isArray(arg)) ? arg : [arg];
     
-    if(success) {
-      exec(success, error, "PaymentPlugin", action, argsArray);
+    if(successCallback) {
+      exec(successCallback, failCallback, "PaymentPlugin", action, argsArray);
     } else {
-      exec(function(response) {}, error, "PaymentPlugin", action, argsArray);
+      exec(function(response) {}, failCallback, "PaymentPlugin", action, argsArray);
     }
   }
 }
