@@ -1,21 +1,39 @@
 {
-  "name": "payment_Plugin",
+  "name": "PaymentPlugin",
   "version": "0.0.1",
-  "description": "A plugin for determining if the user has an appointment coming up shortly",
+  "description": "Cordova Payment Plugin Powered by Interswitch",
   "cordova": {
-    "id": "com.interswitchng.testpayment",
+    "id": "cordova-isw-payment-plugin",
     "platforms": [
       "android",
-      "ios",
-      "windows"
+      "ios"
     ]
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/techquest/cordova-payment-plugin.git"
+  },
+  "files": [
+    "plugin.xml",
+    "src",
+    "www",
+    "libs"
+  ],
   "keywords": [
+    "cordova",
     "ecosystem:cordova",
     "cordova-android",
     "cordova-ios",
-    "cordova-windows"
+    "interswitch",
+    "payment"
   ],
-  "author": "Microsoft",
-  "license": "ISC"
+  "scripts": {
+    "test": "npm run jshint",
+    "jshint": "node node_modules/jshint/bin/jshint www && node node_modules/jshint/bin/jshint src && node node_modules/jshint/bin/jshint tests"
+  },
+  "author": "Interswitch Limited",
+  "license": "MIT",
+  "devDependencies": {
+    "jshint": "^2.6.0"
+  }
 }
