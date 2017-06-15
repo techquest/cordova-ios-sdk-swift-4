@@ -11,6 +11,8 @@
    * [Pay with Card/Wallet](#Pay)
    * [Pay with Card](#PayWithCard)
 
+6. [Example](#Example)
+
 
   
 
@@ -38,14 +40,14 @@ cordova plugin add https://github.com/tobzy/cordova-plugin.git
 * Add ```ios``` platform. Make sure to add the platform **after** adding the plugin.
 
 ```terminal
-cordova platform add ios
+sudo cordova platform add ios
 ```
 
 * In ```Finder```, go to the **YourCordovaApp/platforms/ios** directory. Open the .xcodeproj file in XCode. A dialog may appear asking: Convert to latest Swift Syntax? Click the **Cancel** button.
 
 * In ```Finder```, go to the ```/platforms/ios/<NameOfApp>/Plugins/com.interswitchng.sdk.payment``` directory. You should see a **PaymentSDK.framework** file.
 
-* Drag the ​ **PaymentSDK.framework** file from ```Finder``` to XCode's **Embedded Binaries** section for your app's **TARGETS** settings.
+* Drag the ​ **PaymentSDK.framework** file from ```Finder``` to XCode's **Embedded Binaries** section for your app's **TARGETS** settings. This will be found under the ```General``` tab.
 
 * In the dialog that appears, make sure ```Copy items if needed``` is unchecked.
 
@@ -69,6 +71,7 @@ platform :ios, "8.0"
 use_frameworks!
 ```
 
+* Check the target block, if the line ```use_frameworks``` is there, please remove it since the line already exists.
 * Add the following to the **Podfile**, inside the first ```target``` block.
 
 ```
@@ -84,7 +87,13 @@ pod 'OpenSSL-Universal', '1.0.2.10'
 pod install
 ```
 
-* After the pods are installed successfully you can go to the directory ```platforms/ios``` and open the ```<NameOfApp>.xcworkspace``` file in XCode. 
+* After the pods are installed successfully you can go to the directory ```platforms/ios``` and open the ```<NameOfApp>.xcworkspace``` file in XCode.
+
+* . Important: With XCode still open, click the project to view its settings. Under the ```Build Settings``` tab find the Architectures section and change the value for ```Build Active Architecture Only``` to No. Do the same for the target settings.
+
+* Next, click on ```CordovaLib.xcodeproj``` to view its settings. Under the ```Build Settings``` tab find the Architectures section and change the value for ```Build Active Architecture Only``` to No. Do the same for the target settings.
+
+* Next, click on ```Pods``` to view its settings. Under the ```Build Settings``` tab find the Architectures section and change the value for ```Build Active Architecture Only``` to No. Do the same for the target settings.
 
 
 ### <a name='SandBoxMode'></a> Using The Plugin in Sandbox Mode
@@ -107,7 +116,7 @@ During development of your app, you should use the Plugin in sandbox mode to ena
 ```
 
 * Follow the remaining steps in the documentation.
-* call the init function inside the onDeviceReady function of your cordova app
+* call the init function inside the onDeviceReady function of your cordova app  (VERY IMPORTANT!)
 * NOTE: When going into Production mode, use the Client Id and the Client Secret got from the Production Tab of Developer Console instead.
 
 ## <a name='SDKWithUI'></a>Using the Plugin with UI (In PCI-DSS Scope: No )
@@ -168,3 +177,51 @@ During development of your app, you should use the Plugin in sandbox mode to ena
   PaymentPlugin.payWithCard(payWithCardRequest, payWithCardSuccess, payWithCardFail);
 ```
 
+### <a name='Example'></a>Example
+
+```javascript
+onDeviceReady: function() {
+        this.receivedEvent('deviceready');
+
+        //the init function with client parameters
+        function init() {
+            var userDetails = {
+                clientId: "IKIA7B379B0114CA57FAF8E19F5JKSD83ED2220057EF",
+                clientSecret: "MiunSQ5S/N219UCVP3432raPfwK9lMoiV/Pwertv/R4=",
+                paymentApi: "https://qa.interswitchng.com",
+                passportApi: "https://qa.interswitchng.com/passport"
+            };
+
+            var initial = PaymentPlugin.init(userDetails);
+        }
+        var payWithCard = function() {
+            var payWithCardRequest = {
+                amount: "20", // Amount in Naira
+                customerId: "1234567890", // Optional email, mobile no, BVN etc to uniquely identify the customer.
+                currency: "NGN", // ISO Currency code
+                description: "Purchase Phone" // Description of product to purchase
+            };
+            var payWithCardSuccess = function(response) {
+                var purchaseResponse = JSON.parse(response);
+
+                alert(purchaseResponse.message);
+            }
+            var payWithCardFail = function(response) {
+                alert(response);
+            }
+            PaymentPlugin.payWithCard(payWithCardRequest, payWithCardSuccess, payWithCardFail);
+        }
+
+        init();
+
+
+         //Event listener to call the payWithCard function when the button is clicked.
+
+        document.getElementById('payButton').addEventListener('click', function() {
+            payWithCard();
+        })
+    },
+
+
+
+```
