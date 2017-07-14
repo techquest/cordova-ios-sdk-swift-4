@@ -47,7 +47,7 @@ open class PayWithUI {
         vc.view.addGestureRecognizer(screenTap)
         
         let navController = UINavigationController(rootViewController: vc)
-        //addBackNavigationMenuItem(vc)
+        addBackNavigationMenuItem(vc)
         
         cdvPlugin.viewController?.present(navController, animated: true, completion: nil)
         currentVc = navController
