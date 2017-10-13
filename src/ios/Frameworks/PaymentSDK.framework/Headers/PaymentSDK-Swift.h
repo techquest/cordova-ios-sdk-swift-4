@@ -382,6 +382,12 @@ SWIFT_CLASS("_TtC10PaymentSDK15PurchaseRequest")
 
 
 
+SWIFT_CLASS("_TtC10PaymentSDK22SplitSettlementAccount")
+@interface SplitSettlementAccount : NSObject
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
+@end
+
+
 
 
 SWIFT_CLASS("_TtC10PaymentSDK12ValidateCard")
