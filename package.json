@@ -1,0 +1,25 @@
+{
+  "name": "PaymentPlugin",
+  "version": "0.0.1",
+  "description": "ISW cordova payment plugin",
+  "cordova": {
+    "id": "com.interswitchng.testpayment",
+    "platforms": [
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tobzy/cordova-plugin.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-ios"
+  ],
+  "author": "Mayowa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tobzy/cordova-plugin/issues"
+  },
+  "homepage": "https://github.com/tobzy/cordova-plugin#readme"
+}
