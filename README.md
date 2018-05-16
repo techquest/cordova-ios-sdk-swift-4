@@ -51,7 +51,7 @@ sudo cordova platform add ios
 
 * In the dialog that appears, make sure ```Copy items if needed``` is unchecked.
 
-* **Important**: With ```XCode``` still open, click the project to view its settings. Under the **info** tab find the **Configurations** section and change all the values for ```Debug``` and ```Release``` to **None**. You can change it back once our setups are done.
+* **Important**: You can only test the SDK on an actual device.
 
 ### <a name='SandBoxMode'></a> Using The Plugin in Sandbox Mode
 
