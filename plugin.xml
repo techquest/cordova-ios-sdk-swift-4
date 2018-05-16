@@ -16,7 +16,13 @@
         <source-file src='src/ios/Utils.swift'/>
 
         <framework src="src/ios/Frameworks/PaymentSDK.framework" custom="true"/>
+        <framework src="src/ios/Frameworks/Alamofire.framework" custom="true"/>
+        <framework src="src/ios/Frameworks/CryptoSwift.framework" custom="true"/>
+        <framework src="src/ios/Frameworks/SwiftyJSON.framework" custom="true"/>
         <preference name="UseSwiftLanguageVersion" value="4"/>
+        <preference name="UseSwiftLanguageVersion" value="4" default="4"/>
+        <preference name="USESWIFTLANGUAGEVERSION" value="4" default="4"/>
+        
+        <dependency id="cordova-plugin-add-swift-support" url="https://github.com/akofman/cordova-plugin-add-swift-support"/>
     </platform>
-    <dependency id="cordova-plugin-add-swift-support" url="https://github.com/akofman/cordova-plugin-add-swift-support"/>
 </plugin>
